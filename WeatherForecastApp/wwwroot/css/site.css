@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+   
+}
+.Cold {
+    background-color: #9EDEFF;
+}
+.Hot {
+    background-color: #EB6530;
+}
+.LittleHot {
+    background-color: #F3D68B;
+}
+.Beg {
+    background-color: #E6E2E0;
+}
+.Normal {
+    
+    border: 2px solid #9EDEFF;
+}

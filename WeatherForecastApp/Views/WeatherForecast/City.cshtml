@@ -1,0 +1,115 @@
+﻿@model WeatherForecastApp.Models.City
+
+@{
+    ViewData["Title"] = "City";
+}
+
+
+    <form method="get" asp-action="City">
+            <h3 id="rubrik" >Search By City Name</h3>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <input type="search" class="form-control" value="@ViewData["GetCity"]" name="city" placeholder="Enter city name ..." style="width:500px;" />
+            </div>
+                <input type="submit" value="Search" class="btn btn-info" style="display:inline"; />
+            <span asp-validation-for="SearchByCity.CityName" class="text-danger"> </span>
+        </div>
+    </form>
+
+
+@if (Model.Name!=null)
+{
+    <div id="cardWeather" runat="server" class="card mb-3" style="max-width: 500px;"  > 
+    <div class="row g-0">
+       
+      <h3 class="bg-primary rounded-2 p-1 text-white">@Model.Name</h3>
+       <div class="col-md-8 p-1 rounded-2">
+           @*Change card bg depens temprature by Css file*@
+            @{
+                var nameClass = "";
+                if (Model.Temprature < 0)
+                {
+                    nameClass = "Cold";
+                }
+                else if(Model.Temprature > 30)
+                {
+                    nameClass = "Hot";
+                }
+                else if(Model.Temprature > 20)
+                {
+                    nameClass = "LittleHot";
+                }
+                else if(Model.Temprature > 10)
+                {
+                    nameClass = "Beg";
+                }
+                else
+                {
+                    nameClass = "Normal";
+                }
+              }
+
+            <div class="rounded-2 p-xl-2 @nameClass">
+
+                
+         <label asp-for="Name"></label>
+           <span class="badge alert-primary">@Model.Name</span><br />
+            
+
+          <label asp-for="Temprature"></label>
+          @if (Model.Temprature < 0)
+           {
+            <span class="badge alert-danger">@Model.Temprature°</span><br />
+
+             }
+              else
+               {
+                   <span class="badge alert-primary">@Model.Temprature°</span><br />
+                    }
+
+                    <label asp-for="Humidity"></label>
+                    <span class="badge alert-primary">@Model.Humidity</span><br />
+
+                    <label asp-for="Pressure"></label>
+                    <span class="badge alert-primary">@Model.Pressure Hpa</span><br />
+
+                    <label asp-for="Wind"></label>
+                    <span class="badge alert-primary">@Model.Wind</span><br />
+
+                    <label asp-for="Weather"></label>
+                    <span class="badge alert-primary">@Model.Weather</span><br />
+            
+            
+                    <label asp-for="Feels_like"></label>
+                    <span class="badge alert-primary">@Model.Feels_like</span><br />
+                  
+                </div>
+                 </div>   
+                <br />
+                <div class="col-md-4 ">
+                    <div class="m-2">
+                        @*Change pic depens the weather*@
+                          @if (Model.Weather == "Clouds")
+                            {
+                                <img src="~/imgs/cloudy-gif.gif" class="card-img-top" alt="Clouds">
+                            }else if (Model.Weather == "Clear")
+                            {
+                                <img src="~/imgs/hlafClear-gif.gif" class="card-img-top" alt="Clouds">
+                            }else if (Model.Weather == "Rain")
+                            {
+                                <img src="~/imgs/Rainy-Gif.gif" class="card-img-top" alt="Clouds">
+                            }else if (Model.Weather == "Mist")
+                            {
+                                <img src="~/imgs/thunder-gif.gif" style="width:150px" class="img-fluid rounded-start" alt="Clouds">
+                            }else if (Model.Weather == "Drizzle")
+                            {
+                                <img src="~/imgs/Rainy.png" style="width:150px" class="img-fluid rounded-start" alt="Clouds">
+                            }
+
+                    </div>
+                    
+                </div>
+       
+    </div>
+</div>
+}
